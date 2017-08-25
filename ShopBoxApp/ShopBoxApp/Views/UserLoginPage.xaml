@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             xmlns:attachedBehaviors="clr-namespace:ShopBoxApp.AttachedBehaviors;assembly=ShopBoxApp"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="ShopBoxApp.Views.UserLoginPage" Title="LogIn">
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <Color x:Key="BackgroundColor">#5f6263</Color>
+      <Color x:Key="GreenColor">#2EAD43</Color>
+
+    </ResourceDictionary>
+  </ContentPage.Resources>
+  <AbsoluteLayout>
+    <Grid AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" BackgroundColor="{DynamicResource BackgroundColor}">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="2*"/>
+        <RowDefinition Height="2*"/>
+        <RowDefinition Height="2*"/>
+      </Grid.RowDefinitions>
+      <Image Aspect="AspectFill" HeightRequest="50" WidthRequest="120" Source="logo_light_version.png" VerticalOptions="End" HorizontalOptions="Center"/>
+      <StackLayout Grid.Row="1" Orientation="Vertical" VerticalOptions="Center" Padding="30,0" Spacing="20">
+
+        <ContentView  HorizontalOptions="FillAndExpand">
+          <Entry x:Name="UserNameEntry"
+                 HorizontalOptions="FillAndExpand"
+                 Placeholder="Username"
+                            
+                 VerticalOptions="Center"
+                 PlaceholderColor="White"
+                 BackgroundColor="Transparent"
+                 Text="{Binding Username, Mode=TwoWay}"
+                 TextColor="White">
+            <Entry.Behaviors>
+              <attachedBehaviors:IsRequiredValidatorBehavior x:Name="RequiredUsernameValidation"/>
+            </Entry.Behaviors>
+          </Entry>
+        </ContentView>
+
+        <ContentView BackgroundColor="Transparent" HorizontalOptions="FillAndExpand">
+          <Entry x:Name="PasswordEntry"
+                 HorizontalOptions="FillAndExpand"
+                 VerticalOptions="Center"
+                 Placeholder="Password"
+                 PlaceholderColor="White"
+                 IsPassword="True"
+                 BackgroundColor="Transparent"
+                 Text="{Binding Password, Mode=TwoWay}"
+                 TextColor="White"
+
+            >
+            <Entry.Behaviors>
+              <attachedBehaviors:IsRequiredValidatorBehavior x:Name="RequiredPasswordValidation"/>
+            </Entry.Behaviors>
+          </Entry>
+        </ContentView>
+
+      </StackLayout>
+      <ContentView Grid.Row="2" Padding="30,0">
+        <Button x:Name="LoginButton"
+                VerticalOptions="Start"
+                Text="LogIn" BackgroundColor="{DynamicResource GreenColor}"
+                Command="{Binding LoginCommand}"
+                TextColor="White"
+                IsEnabled="{Binding Source={x:Reference RequiredPasswordValidation}, Path=IsNotValid}">
+          <Button.Triggers>
+            <Trigger TargetType="Button"
+                 Property="IsEnabled" Value="true">
+              <Setter Property="BackgroundColor" Value="{DynamicResource GreenColor}"/>
+              <!-- white is the desired color when the button is enabled.-->
+            </Trigger>
+            <Trigger TargetType="Button"
+                 Property="IsEnabled" Value="false">
+              <Setter Property="BackgroundColor" Value="{DynamicResource GreenColor}"/>
+            </Trigger>
+          </Button.Triggers>                    >
+        </Button>
+      </ContentView>
+      <ActivityIndicator Grid.Row="0" Grid.RowSpan="4" Margin="70" IsVisible="{Binding IsLoading}" IsRunning="{Binding IsLoading}"
+             VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Color="{DynamicResource GreenColor}"/>
+    </Grid>
+  </AbsoluteLayout>
+
+</ContentPage>

@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             xmlns:behaviors="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="ShopBoxApp.Views.BranchesPage"  Title="Stores" BackgroundColor="{DynamicResource BackgroundColor}">
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <Color x:Key="BackgroundColor">#5f6263</Color>
+      <Color x:Key="GreenColor">#2EAD43</Color>
+
+    </ResourceDictionary>
+  </ContentPage.Resources>
+  <AbsoluteLayout>
+    <Grid AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" BackgroundColor="{DynamicResource BackgroundColor}">
+      <ListView 
+                ItemsSource="{Binding BranshesLst}"
+                ItemTapped="ListView_OnItemTapped"
+                SeparatorVisibility="Default"
+                VerticalOptions="Fill"
+                HorizontalOptions="Fill">
+        <ListView.ItemTemplate>
+          <DataTemplate>
+            <ViewCell>
+
+              <Grid Padding="20,5" HorizontalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                  <RowDefinition Height="Auto"/>
+                  <RowDefinition />
+                </Grid.RowDefinitions>
+                <Label Margin="5" TextColor="White" Text="{Binding name}"/>
+                <ListView 
+                    Grid.Row="1"
+                    ItemsSource="{Binding cash_registers}"
+                    SeparatorVisibility="Default"
+                    VerticalOptions="Fill"
+                    HorizontalOptions="Fill">
+                  <ListView.ItemTemplate>
+                    <DataTemplate>
+                      <ViewCell>
+                        <Grid Padding="5" HorizontalOptions="FillAndExpand">
+                          <Label  Text="{Binding name}" FontSize="Small" TextColor="White" />
+                        </Grid>
+                      </ViewCell>
+                    </DataTemplate>
+                  </ListView.ItemTemplate>
+                </ListView>
+              </Grid>
+            </ViewCell>
+          </DataTemplate>
+        </ListView.ItemTemplate>
+        <ListView.Behaviors>
+          <behaviors:EventToCommandBehavior EventName="ItemTapped" Command="{Binding SelectedBranshCommand}"/>
+        </ListView.Behaviors>
+      </ListView>
+      
+      <ActivityIndicator Margin="70" IsVisible="{Binding IsLoading}" IsRunning="{Binding IsLoading}"
+                     VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Color="{DynamicResource GreenColor}"/>
+    </Grid>
+  </AbsoluteLayout>
+</ContentPage>
