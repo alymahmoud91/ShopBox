@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace ServiceLayer.Models
 {
-   public class BranchesRoot
+    public class Zone0
     {
-        public List<Datum> data { get; set; } 
+        public int uid { get; set; }
+        public string country_code { get; set; }
+        public string zone_name { get; set; }
     }
 }

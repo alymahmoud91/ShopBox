@@ -40,17 +40,17 @@ namespace ShopBoxApp.ViewModels
             get { return _isLoading; }
             set { _isLoading = value; RaisePropertyChanged(); }
         }
-        private BranchesRoot.Datum _currentBranch;
+        private Datum _currentBranch;
 
-        public BranchesRoot.Datum CurrentBranch
+        public Datum CurrentBranch
         {
             set { _currentBranch = value; RaisePropertyChanged("CurrentBranch"); }
             get { return _currentBranch; }
         }
 
-        private List<BranchesRoot.Datum> _branshesLst;
+        private List<Datum> _branshesLst;
 
-        public List<BranchesRoot.Datum> BranshesLst
+        public List<Datum> BranshesLst
         {
             set { _branshesLst = value; RaisePropertyChanged("BranshesLst"); }
             get { return _branshesLst; }
@@ -97,6 +97,7 @@ namespace ShopBoxApp.ViewModels
                     throw new Exception("no  Branshe Found");
                 }
                 BranshesLst = result?.data;
+                RaisePropertyChanged("BranshesLst");
                 IsLoading = false;
             }
             catch (Exception ex)

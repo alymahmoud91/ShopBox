@@ -15,6 +15,7 @@
   <AbsoluteLayout>
     <Grid AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" BackgroundColor="{DynamicResource BackgroundColor}">
       <ListView 
+               
                 ItemsSource="{Binding BranshesLst}"
                 ItemTapped="ListView_OnItemTapped"
                 SeparatorVisibility="Default"
@@ -27,9 +28,9 @@
               <Grid Padding="20,5" HorizontalOptions="FillAndExpand">
                 <Grid.RowDefinitions>
                   <RowDefinition Height="Auto"/>
-                  <RowDefinition />
+                  <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <Label Margin="5" TextColor="White" Text="{Binding name}"/>
+                <Label Grid.Row="0" Margin="5" TextColor="White" Text="{Binding name}"/>
                 <ListView 
                     Grid.Row="1"
                     ItemsSource="{Binding cash_registers}"
@@ -39,7 +40,7 @@
                   <ListView.ItemTemplate>
                     <DataTemplate>
                       <ViewCell>
-                        <Grid Padding="5" HorizontalOptions="FillAndExpand">
+                        <Grid Margin="3" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
                           <Label  Text="{Binding name}" FontSize="Small" TextColor="White" />
                         </Grid>
                       </ViewCell>

@@ -14,7 +14,7 @@ namespace ShopBoxApp.Views
         private void ListView_OnItemTapped(object sender, ItemTappedEventArgs e)
         {
             if (BindingContext == null) return;
-            (BindingContext as BranchesPageViewModel).CurrentBranch = e.Item as BranchesRoot.Datum;
+            (BindingContext as BranchesPageViewModel).CurrentBranch = e.Item as Datum;
             ((ListView)sender).SelectedItem = null;
         }
     }

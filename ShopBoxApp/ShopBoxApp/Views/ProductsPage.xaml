@@ -16,6 +16,7 @@
     <Grid AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" BackgroundColor="{DynamicResource BackgroundColor}">
       <ScrollView >
         <controles:GridView
+          Padding="5"
           HorizontalOptions="FillAndExpand"
           VerticalOptions="FillAndExpand"
           x:Name="GrdView"

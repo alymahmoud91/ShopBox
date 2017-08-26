@@ -8,7 +8,7 @@ namespace ServiceLayer.Models
         public string name { get; set; }
         public object kitchen_name { get; set; }
         public object display_name { get; set; }
-        public int stock_price { get; set; }
+        public object stock_price { get; set; }
         public double selling_price { get; set; }
         public Image image { get; set; }
         public string code { get; set; }
@@ -24,7 +24,7 @@ namespace ServiceLayer.Models
         public object description { get; set; }
         public string type { get; set; }
         public int? web_shop_show { get; set; }
-        public int tag { get; set; }
+        public object tag { get; set; }
         public object integration { get; set; }
         public object preparation_time { get; set; }
         public Tag0 tag0 { get; set; }
