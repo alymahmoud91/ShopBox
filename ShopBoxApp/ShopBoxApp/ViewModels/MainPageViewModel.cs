@@ -96,11 +96,12 @@ namespace ShopBoxApp.ViewModels
                var Result= await _clientServiceCall.GetAllStores(Settings.AccessToken);
                 MyClients = Result?.clients;
                 IsLoading = false;
+              
             }
             catch (Exception ex)
             {
                 IsLoading = false;
-                await _dialogService.DisplayActionSheetAsync("Erorr", ex.Message, "ok", "cancel");
+                await _dialogService.DisplayAlertAsync("Erorr", ex.Message, "ok", "cancel");
                
             }
         }

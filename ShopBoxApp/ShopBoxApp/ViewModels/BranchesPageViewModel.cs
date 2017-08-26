@@ -92,13 +92,17 @@ namespace ShopBoxApp.ViewModels
                     throw new Exception("No Internet Connection");
                 IsLoading = true;
                 var result = await _clientServiceCall.GetAllCashRegisters(Settings.AccessToken,Settings.ClientId);
+                if (result?.data.Count == 0)
+                {
+                    throw new Exception("no  Branshe Found");
+                }
                 BranshesLst = result?.data;
                 IsLoading = false;
             }
             catch (Exception ex)
             {
                 IsLoading = false;
-                await _dialogService.DisplayActionSheetAsync("Erorr", ex.Message, "ok", "cancel");
+                await _dialogService.DisplayAlertAsync("Erorr", ex.Message, "ok", "cancel");
 
             }
         }

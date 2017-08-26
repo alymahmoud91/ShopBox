@@ -73,13 +73,17 @@ namespace ShopBoxApp.ViewModels
                     throw new Exception("No Internet Connection");
                 IsLoading = true;
                 var result = await _clientServiceCall.GetAllProducts(Settings.AccessToken, Settings.ClientId);
+                if (result?.products.Count == 0)
+                {
+                    throw new Exception("no  Branshe Found");
+                }
                 ProductsLst = result?.products;
                 IsLoading = false;
             }
             catch (Exception ex)
             {
                 IsLoading = false;
-                await _dialogService.DisplayActionSheetAsync("Erorr", ex.Message, "ok", "cancel");
+                await _dialogService.DisplayAlertAsync("Erorr", ex.Message, "ok", "cancel");
 
             }
         }
